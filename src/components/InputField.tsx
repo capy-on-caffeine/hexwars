@@ -38,6 +38,12 @@ const InputField = ({ hasGameEnded, turnsLeft, targetColor, setTurnsLeft, handle
             });
         }
     };
+
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === 'Enter') {
+            handleSubmit();
+        }
+    }
     
 
     return (
@@ -46,11 +52,14 @@ const InputField = ({ hasGameEnded, turnsLeft, targetColor, setTurnsLeft, handle
                 ref={inputRef}
                 className='relative border-2 rounded-sm px-2 py-1 w-40 text-2xl'
                 placeholder='#'
+                disabled={hasGameEnded}
+                onKeyDown={handleKeyDown}
             />
 
             <button
                 className={`relative text-white p-2 rounded-md ${hasGameEnded ? 'bg-gray-400 cursor-default' : 'bg-green-700 cursor-pointer'}`}
-                onClick={handleSubmit}
+                onClick={handleSubmit} 
+                disabled={hasGameEnded}
             >
                 <ArrowRight />
             </button>
