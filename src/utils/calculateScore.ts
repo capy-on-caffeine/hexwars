@@ -1,6 +1,6 @@
 // This takes the final target and user-guessed colors, calculates how close theu are and then rates the attempt out of 100
 
-import parseRgb from "./parseRgb";
+import { parseRgbFromString } from "./colors";
 
 // Suggestion: use the guesses used as a metric as well
 
@@ -11,8 +11,8 @@ import parseRgb from "./parseRgb";
 // What if the first guess has the most weightage and progressive guesses have less weightage?
 
 const calculateScore = (targetColor: string, userColor: string) : number => {
-    const targetRgb = parseRgb(targetColor);
-    const userRgb = parseRgb(userColor, true);
+    const targetRgb = parseRgbFromString(targetColor);
+    const userRgb = parseRgbFromString(userColor, true);
 
     const distance = Math.abs(targetRgb.r - userRgb.r) + Math.abs(targetRgb.g - userRgb.g) + Math.abs(targetRgb.b - userRgb.b);
     const maxPossibleDistance = 255 * 3;

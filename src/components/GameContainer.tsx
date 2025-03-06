@@ -57,7 +57,7 @@ const GameContainer = () => {
                 <div className='flex flex-col gap-4'>
                     {
                         guesses.map((guess, index) => (
-                            <PreviousGuessContainer key={index} guess={guess} />
+                            <PreviousGuessContainer key={index} guess={guess} target={targetColor} />
                         ))
                     }
                 </div>

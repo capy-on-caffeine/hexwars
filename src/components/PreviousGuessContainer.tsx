@@ -1,28 +1,41 @@
-import React, { useState } from 'react'
+import { rgbToHex } from '@/utils/colors';
+import React from 'react';
 
 interface PreviousGuessContainerProps {
-    key: number,
-    guess: string
+    guess: string;
+    target: string;
 }
 
+const PreviousGuessContainer = ({ guess, target }: PreviousGuessContainerProps) => {
+    if (guess.startsWith('#')) guess = guess.slice(1);
 
-const PreviousGuessContainer = ({guess} : PreviousGuessContainerProps) => {
-    const color = guess;
+    let targetHex = rgbToHex(target);
+    if (targetHex.startsWith('#')) targetHex = targetHex.slice(1);
 
-    console.log("Insdie prev guess contaibner" + guess)
-    if (guess.startsWith('#')) {
-        guess = guess.slice(1);
-    }
+    const decideBoxBackgroundColor = () => {
+        return guess.split('').map((char, index) => {            
+            const emoji = char === targetHex[index] ? '✅' : '❌';
 
-  return (
-    <div className='flex gap-2'>
-        {
-            guess.split('').map((char, index) => (
-                <div key={index} className='relative h-16 w-12 flex justify-center items-center text-2xl rounded-lg border-3' style={{borderColor: color}}>{ char }</div>
-            ))
-        }
-    </div>
-  )
-}
+            return (
+                <div
+                    key={index}
+                    className="relative h-16 w-12 flex flex-col justify-center items-center text-2xl rounded-lg border-4"
+                    style={{ borderColor: `#${guess}` }}
+                >
+                    <span>{char}</span>
+                    <span className='text-sm'>{emoji}</span>
+                </div>
+            );
+        });
+    };
 
-export default PreviousGuessContainer
+    return (
+        <div className="flex gap-2">
+            {
+                decideBoxBackgroundColor()
+            }
+        </div>
+    );
+};
+
+export default PreviousGuessContainer;

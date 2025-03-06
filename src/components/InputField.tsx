@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import { ArrowRight } from 'lucide-react';
+import { rgbToHex } from '@/utils/colors';
 
 interface InputFieldProps {
     hasGameEnded: boolean;
@@ -28,9 +29,9 @@ const InputField = ({ hasGameEnded, turnsLeft, targetColor, setTurnsLeft, handle
     
             setTurnsLeft((prev) => {
                 const updatedTurns = prev - 1;
-                console.log(`Turns left: ${updatedTurns}, target: ${targetColor}, guess: ${guess}`);
+                console.log(`Turns left: ${updatedTurns}, target: ${rgbToHex(targetColor)}, guess: ${guess}`);
                 
-                if (updatedTurns === 0 || targetColor === guess) {
+                if (updatedTurns === 0 || guess === rgbToHex(targetColor).slice(1)) {
                     setHasGameEnded(true);
                 }
     
