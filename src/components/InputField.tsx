@@ -11,7 +11,8 @@ interface InputFieldProps {
     setHasGameEnded: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const InputField = ({ hasGameEnded, turnsLeft, targetColor, setTurnsLeft, handleGuessSubmit, setHasGameEnded }: InputFieldProps) => {
+const InputField = ({ hasGameEnded, targetColor, setTurnsLeft, handleGuessSubmit, setHasGameEnded }: InputFieldProps) => {
+    // update type props
     const inputRef = useRef<HTMLInputElement>(null);
 
     // add validation function here
