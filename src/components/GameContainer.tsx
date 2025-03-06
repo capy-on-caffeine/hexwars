@@ -38,7 +38,7 @@ const GameContainer = () => {
     };
     
   return (
-    <div className='w-1/3 h-5/6 bg-white rounded-2xl'>
+    <div className='w-5/6 md:w-1/2 xl:w-1/3 h-5/6 bg-white rounded-2xl'>
         <div className='relative flex flex-col items-center p-8 gap-8'>
             <div className='relative flex flex-col items-center gap-4'>
                 <div className='relative flex items-center justify-center gap-8'>
